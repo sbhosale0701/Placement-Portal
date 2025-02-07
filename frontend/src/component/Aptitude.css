@@ -1,0 +1,93 @@
+/* General Container */
+.aptitude-container {
+    padding: 20px;
+    background-color: #f5faff;
+    /* Light blue background */
+    color: #333;
+    font-family: Arial, sans-serif;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 24px;
+    color: #0044cc;
+    /* Blue title */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Aptitude Grid for Company Cards */
+.aptitude-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    /* 5 columns */
+    gap: 20px;
+    /* Space between items */
+}
+
+.aptitude-card {
+    text-align: center;
+    background-color: #fff;
+    /* White cards */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.aptitude-card:hover {
+    transform: scale(1.05);
+    /* Hover effect */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.company-logo {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+    border-radius: 50%;
+}
+
+/* Domain Resources Section */
+.domain-resources {
+    display: flex;
+    justify-content: space-between;
+    /* Spacing between resource cards */
+    gap: 20px;
+}
+
+.resource-card {
+    flex: 1;
+    text-align: center;
+    background-color: #fff;
+    /* White cards */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resource-card:hover {
+    transform: scale(1.05);
+    /* Hover effect */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling */
+.get-started-btn {
+    padding: 10px 20px;
+    background-color: #0044cc;
+    /* Blue button */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.get-started-btn:hover {
+    background-color: #003399;
+    /* Darker blue on hover */
+}

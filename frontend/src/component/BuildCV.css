@@ -1,0 +1,111 @@
+/* General Container */
+.cv-container {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Title Styling */
+.cv-title {
+    color: #3f51b5;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Template Container - Flexbox layout */
+.template-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Template Item - Styling for each card */
+.template-item {
+    width: 20%;
+    padding: 15px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+    /* Smooth scaling and shadow on hover */
+    position: relative;
+    overflow: hidden;
+    /* Prevents image from overflowing card */
+}
+
+/* Hover Effects on Template Item */
+.template-item:hover {
+    transform: scale(1.1);
+    /* Uniform scaling on hover */
+    z-index: 1;
+    /* Brings hovered item to the front */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    /* Adds a shadow for better visibility */
+}
+
+/* Template Hover Content */
+.template-hover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    /* Ensures that the hover effect works correctly */
+}
+
+/* Image Styling */
+.template-image {
+    width: 70%;
+    /* Set width to 100% to ensure full width */
+    height: 200px;
+    /* Set a fixed height for consistent size */
+    object-fit: cover;
+    /* Ensures the image covers the container */
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease;
+    /* Smooth zoom and opacity change */
+    margin-bottom: 10px;
+    will-change: transform;
+    /* Helps improve performance when hovering */
+}
+
+/* Ensure image zooms and stays clear on hover */
+.template-item:hover .template-image {
+    transform: scale(1.1);
+    /* Slight zoom effect on hover */
+    opacity: 1;
+    /* Full opacity */
+}
+
+/* Download Button & Watch Button Styling */
+.download-btn,
+.watch-btn {
+    margin-top: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+/* Watch Title Styling */
+.watch-title {
+    color: #ff4081;
+}
+
+/* Fifth Item Styling (Watch Button) */
+.template-item:nth-child(5) .template-hover {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+    .template-item {
+        width: 45%;
+        /* Adjust width on smaller screens */
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .template-item {
+        width: 100%;
+        /* Full width on extra small screens */
+    }
+}
