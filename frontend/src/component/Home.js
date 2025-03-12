@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     width: "100%",
-    height: "100%",
+    height: "50%",
   },
   jobTileOuter: {
     padding: "30px",
@@ -107,6 +107,9 @@ const JobTile = (props) => {
             <Typography variant="h5">{job.title}</Typography>
           </Grid>
           <Grid item>
+            <Typography variant="h5">{job.companyName}</Typography>
+          </Grid>
+          <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
           </Grid>
           <Grid item>Role : {job.jobType}</Grid>
@@ -134,9 +137,31 @@ const JobTile = (props) => {
             }}
             disabled={userType() === "recruiter"}
           >
-            Apply
+            Accepted
           </Button>
+          <Button variant="contained"
+            color="red"
+            className={classes.button}
+            onClick={() => {
+              setOpen(true);
+            }}
+            disabled={userType() === "recruiter"}>Rejected</Button>
+          
         </Grid>
+        {/* <Grid item xs={3}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={() => {
+              setOpen(true);
+            }}
+            disabled={userType() === "recruiter"}
+          >
+            Rejected
+          </Button>
+          
+        </Grid> */}
       </Grid>
       <Modal open={open} onClose={handleClose} className={classes.popupDialog}>
         <Paper

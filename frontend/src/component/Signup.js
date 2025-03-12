@@ -130,8 +130,9 @@ const Login = (props) => {
     name: "",
     education: [],
     skills: [],
-    domain:"",
-    year:"",
+    domain:'',
+    year:'',
+    branch:'',
      CGPA:"",
     resume: "",
     profile: "",
@@ -209,9 +210,7 @@ const Login = (props) => {
         tmpErrorHandler[obj] = inputErrorHandler[obj];
       }
     });
-
-    console.log(education);
-
+  
     let updatedDetails = {
       ...signupDetails,
       education: education
@@ -222,14 +221,15 @@ const Login = (props) => {
           }
           return obj;
         }),
+      contactNumber: phone !== "" ? `+${phone}` : "",
     };
-
+  
     setSignupDetails(updatedDetails);
-
+  
     const verified = !Object.keys(tmpErrorHandler).some((obj) => {
       return tmpErrorHandler[obj].error;
     });
-
+  
     if (verified) {
       axios
         .post(apiList.signup, updatedDetails)
@@ -242,15 +242,13 @@ const Login = (props) => {
             severity: "success",
             message: "Logged in successfully",
           });
-          console.log(response);
         })
         .catch((err) => {
           setPopup({
             open: true,
             severity: "error",
-            message: err.response.data.message,
+            message: err.response?.data?.message || "Signup failed",
           });
-          console.log(err.response);
         });
     } else {
       setInputErrorHandler(tmpErrorHandler);
@@ -260,20 +258,8 @@ const Login = (props) => {
         message: "Incorrect Input",
       });
     }
-   
-    if (phone !== "") {
-      updatedDetails = {
-        ...signupDetails,
-        contactNumber: `+${phone}`,
-      };
-    } else {
-      updatedDetails = {
-        ...signupDetails,
-        contactNumber: "",
-      };
-    }
-
   };
+  
 
   const handleLoginRecruiter = () => {
     const tmpErrorHandler = {};
@@ -451,16 +437,33 @@ const Login = (props) => {
             value={signupDetails.year}
             onChange={(event) => handleInput("year", event.target.value)}
           >
-            <MenuItem value="First-Year-A">FY-A</MenuItem>
-            <MenuItem value="First-Year-B">FY-B</MenuItem>
-            <MenuItem value="Second-Year-A">SY-A</MenuItem>
-            <MenuItem value="Second-Year-B">SY-B</MenuItem>
-            <MenuItem value="Third-Year-A">TY-A</MenuItem>
-            <MenuItem value="Third-Year-B">TY-B</MenuItem>
-            <MenuItem value="Fourth-Year-A">BTech-A</MenuItem>
-            <MenuItem value="Fourth-Year-B">BTech-B</MenuItem>
+            <MenuItem value="FY-A">FY-A</MenuItem>
+            <MenuItem value="FY-B">FY-B</MenuItem>
+            <MenuItem value="SY-A">SY-A</MenuItem>
+            <MenuItem value="SY-B">SY-B</MenuItem>
+            <MenuItem value="TY-A">TY-A</MenuItem>
+            <MenuItem value="TY-B">TY-B</MenuItem>
+            <MenuItem value="BTech-A">BTech-A</MenuItem>
+            <MenuItem value="BTech-B">BTech-B</MenuItem>
           </TextField>
         </Grid>
+        <Grid item>
+              <TextField
+                select
+                label="branch"
+                variant="outlined"
+                className={classes.inputBox}
+                value={signupDetails.branch}
+                onChange={(event) => handleInput("branch", event.target.value)}
+              >
+                <MenuItem value="CSE">Computer Science</MenuItem>
+                <MenuItem value="DS">Data Science</MenuItem>
+                <MenuItem value="Electrical">Electrical</MenuItem>
+                <MenuItem value="AI">Artificial Intelligence</MenuItem>
+                <MenuItem value="Civil">Civil</MenuItem>
+                
+              </TextField>
+            </Grid>
             <MultifieldInput
               education={education}
               setEducation={setEducation}

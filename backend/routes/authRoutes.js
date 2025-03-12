@@ -39,6 +39,8 @@ router.post("/signup", async (req, res) => {
       resume,
       profile,
       year,
+      branch,
+      address,
     } = req.body;
 
     // Check if email already exists
@@ -48,7 +50,7 @@ router.post("/signup", async (req, res) => {
     }
 
     // Create new user
-    const user = new User({ email, password, type });
+    const user = new User({ email, password, type ,name,year,branch,domain,contactNumber,education,address,CGPA,resume,profile});
     await user.save();
 
     let userDetails;
@@ -72,6 +74,8 @@ router.post("/signup", async (req, res) => {
         rating,
         resume,
         profile,
+        address,
+        branch
       });
     }
 
