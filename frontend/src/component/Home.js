@@ -107,6 +107,9 @@ const JobTile = (props) => {
             <Typography variant="h5">{job.title}</Typography>
           </Grid>
           <Grid item>
+            <Typography variant="h5">{job.company}</Typography>
+          </Grid>
+          <Grid item>
             <Rating value={job.rating !== -1 ? job.rating : null} readOnly />
           </Grid>
           <Grid item>Role : {job.jobType}</Grid>

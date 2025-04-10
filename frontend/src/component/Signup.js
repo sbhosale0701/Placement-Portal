@@ -451,14 +451,14 @@ const Login = (props) => {
             value={signupDetails.year}
             onChange={(event) => handleInput("year", event.target.value)}
           >
-            <MenuItem value="First-Year-A">FY-A</MenuItem>
-            <MenuItem value="First-Year-B">FY-B</MenuItem>
-            <MenuItem value="Second-Year-A">SY-A</MenuItem>
-            <MenuItem value="Second-Year-B">SY-B</MenuItem>
-            <MenuItem value="Third-Year-A">TY-A</MenuItem>
-            <MenuItem value="Third-Year-B">TY-B</MenuItem>
-            <MenuItem value="Fourth-Year-A">BTech-A</MenuItem>
-            <MenuItem value="Fourth-Year-B">BTech-B</MenuItem>
+            <MenuItem value="FY-A">FY-A</MenuItem>
+            <MenuItem value="FY-B">FY-B</MenuItem>
+            <MenuItem value="SY-A">SY-A</MenuItem>
+            <MenuItem value="SY-B">SY-B</MenuItem>
+            <MenuItem value="TY-A">TY-A</MenuItem>
+            <MenuItem value="TY-B">TY-B</MenuItem>
+            <MenuItem value="BTech-A">BTech-A</MenuItem>
+            <MenuItem value="BTech-B">BTech-B</MenuItem>
           </TextField>
         </Grid>
             <MultifieldInput

@@ -35,6 +35,7 @@ const CreateJobs = (props) => {
 
   const [jobDetails, setJobDetails] = useState({
     title: "",
+    company:"",
     maxApplicants: 100,
     maxPositions: 30,
     deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
@@ -70,6 +71,7 @@ const CreateJobs = (props) => {
         });
         setJobDetails({
           title: "",
+          company:"",
           maxApplicants: 100,
           maxPositions: 30,
           deadline: new Date(new Date().getTime() + 10 * 24 * 60 * 60 * 1000)
@@ -130,6 +132,17 @@ const CreateJobs = (props) => {
                     value={jobDetails.title}
                     onChange={(event) =>
                       handleInput("title", event.target.value)
+                    }
+                    variant="outlined"
+                    fullWidth
+                  />
+                </Grid>
+                <Grid item>
+                  <TextField
+                    label="Compant Name"
+                    value={jobDetails.company}
+                    onChange={(event) =>
+                      handleInput("company", event.target.value)
                     }
                     variant="outlined"
                     fullWidth

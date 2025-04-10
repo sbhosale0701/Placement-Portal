@@ -5,6 +5,7 @@ import {
     Button,
     makeStyles,
   } from "@material-ui/core";
+import { useEffect } from "react";
   import { useHistory } from "react-router-dom/cjs/react-router-dom.min";// React Router v6
   
   const useStyles = makeStyles((theme) => ({
@@ -22,7 +23,16 @@ import {
   const ApplicantNav = () => {
     const classes = useStyles();
     let history = useHistory();
+    const [loggedIn, setLoggedIn] = useState(false);
   
+    useEffect(() => {
+      // Check if token exists in localStorage
+      if (localStorage.getItem("token")) {
+        setLoggedIn(true);
+      } else {
+        setLoggedIn(false);
+      }
+    }, []);
     const handleClick = (location) => {
       console.log(location);
       history.push(location);

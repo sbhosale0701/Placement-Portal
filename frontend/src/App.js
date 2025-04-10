@@ -51,15 +51,15 @@ function App() {
     severity: "",
     message: "",
   });
-  // useEffect(() => {
-  //   const params = new URLSearchParams(window.location.search);
-  //   const token = params.get("token");
-  //   if (token) {
-  //     localStorage.setItem("token", token);
-  //     localStorage.setItem("type", params.get("type"));
-  //     window.history.replaceState(null, "", "/home"); // Remove token from URL
-  //   }
-  // }, []);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get("token");
+    if (token) {
+      localStorage.setItem("token", token);
+      localStorage.setItem("type", params.get("type"));
+      window.history.replaceState(null, "", "/home"); // Remove token from URL
+    }
+  }, []);
   return (
     <BrowserRouter>
       <SetPopupContext.Provider value={setPopup}>

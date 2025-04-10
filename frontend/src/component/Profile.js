@@ -126,6 +126,8 @@ const Profile = (props) => {
     resume: "",
     profile: "",
   });
+  const [phone, setPhone] = useState("");
+
 
   const [education, setEducation] = useState([
     {
@@ -152,6 +154,11 @@ const Profile = (props) => {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setProfileDetails(response.data);
+        setPhone(response.data.contactNumber);
       })
       .then((response) => {
         console.log(response.data);
@@ -198,6 +205,17 @@ const Profile = (props) => {
           return obj;
         }),
     };
+    if (phone !== "") {
+      updatedDetails = {
+        ...profileDetails,
+        contactNumber: `+${phone}`,
+      };
+    } else {
+      updatedDetails = {
+        ...profileDetails,
+        contactNumber: "",
+      };
+    }
 
     axios
       .put(apiList.user, updatedDetails, {

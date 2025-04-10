@@ -17,7 +17,7 @@ import { SetPopupContext } from "../App";
 
 import apiList from "../lib/apiList";
 import isAuth from "../lib/isAuth";
-import { NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { NavLink, useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -129,12 +129,23 @@ const Login = (props) => {
   };
 
   const googleAuth = () => {
-    try {
-      window.location.href = `http://localhost:4444/auth/google/callback`;
-    } catch (err) {
-      console.error("Google authentication failed");
-    }
+    window.open("http://localhost:4444/auth/google/callback", "_self");
+  
+    fetch("http://localhost:4444/auth/login/success", {
+      method: "GET",
+      credentials: "include",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.user) {
+          localStorage.setItem("token", data.token);
+          localStorage.setItem("type", data.user.type);
+          setLoggedin(true); // Update state
+        }
+      })
+      .catch((err) => console.log(err));
   };
+  
 
   return loggedin ? (
    
@@ -192,7 +203,7 @@ const Login = (props) => {
         </Grid>
         <Grid item>
           <Button
-            onClick={()=>googleAuth()}
+            onClick={googleAuth}
             className={classes.googleButton}
             startIcon={<FcGoogle className={classes.googleIcon} />}
           >

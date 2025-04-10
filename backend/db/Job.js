@@ -10,6 +10,10 @@ let schema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    company:{
+      type:String,
+   
+    },
     maxApplicants: {
       type: Number,
       validate: [

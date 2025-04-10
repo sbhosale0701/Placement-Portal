@@ -25,13 +25,15 @@ const sendJobNotification = async (matchingApplicants, job) => {
       html: `
         <h2>New Job Available!</h2>
         <p><strong>Title:</strong> ${job.title}</p>
-        <p><strong>Company:</strong> ${job.maxApplicants}</p>
-        <p><strong>Location:</strong> ${job.maxPositions}</p>
-        <p><strong>Description:</strong> ${job.dateOfPosting}</p>
+        <p><strong>Company:</strong> ${job.company}</p>
+
+        <p><strong>MaxApplicant:</strong> ${job.maxApplicants}</p>
+        <p><strong>MaxPositions:</strong> ${job.maxPositions}</p>
+        <p><strong>Date Of Posting:</strong> ${job.dateOfPosting}</p>
         <p><strong>Deadline:</strong> ${job.deadline}</p>
         <p><strong>SkillSet:</strong> ${job.skillsets}</p>
         <p><strong>Job Type:</strong> ${job.jobType}</p>
-        <p><strong>Job Type:</strong> ${job.domain}</p>
+        <p><strong>Job Domain:</strong> ${job.domain}</p>
         <p><strong>Duration:</strong> ${job.duration}month</p>
         <p><strong>Salary:</strong> ${job.salary}</p>
         

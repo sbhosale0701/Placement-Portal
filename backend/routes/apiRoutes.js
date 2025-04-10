@@ -14,7 +14,24 @@ const sendJobNotification = require("../lib/sendEmail");
 
 const router = express.Router();
 
+// display users to recruiter
 
+router.get("/user",jwtAuth,async(req,res)=>{
+  try{
+    const user=req.user;
+    if(user.type!="recruiter"){
+      return res.status(401).json({ message: "Unauthorized access!" });
+    }
+    const users=await User.find();
+    console.log(users);
+    
+    res.json(users);
+  }
+  catch(err){
+    console.log(err);
+    
+  }
+})
 // ✅ Job Posting Route
 router.post("/jobs", jwtAuth, async (req, res) => {
   try {
@@ -29,6 +46,7 @@ router.post("/jobs", jwtAuth, async (req, res) => {
     const job = await new Job({
       userId: user._id,
       title: data.title,
+      company:data.company,
       maxApplicants: data.maxApplicants,
       maxPositions: data.maxPositions,
       dateOfPosting: data.dateOfPosting,

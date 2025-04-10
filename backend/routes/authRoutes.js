@@ -39,6 +39,7 @@ router.post("/signup", async (req, res) => {
       resume,
       profile,
       year,
+      address,
     } = req.body;
 
     // Check if email already exists
@@ -48,7 +49,7 @@ router.post("/signup", async (req, res) => {
     }
 
     // Create new user
-    const user = new User({ email, password, type });
+    const user = new User({ name,email, password, type ,domain,contactNumber,year,CGPA,address,resume,profile});
     await user.save();
 
     let userDetails;
@@ -72,6 +73,7 @@ router.post("/signup", async (req, res) => {
         rating,
         resume,
         profile,
+        address
       });
     }
 
@@ -136,15 +138,42 @@ router.post("/login", async (req, res) => {
 });
 router.get(
   "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
 );
+
+// router.get(
+//   "/google/callback",
+//   passport.authenticate("google", {
+    
+//     failureRedirect: "http://localhost:3000/login",
+//   }),
+//   (req, res) => {
+//     const { user, token } = req.user;
+    
+//     // Redirect to frontend with JWT token
+//     res.redirect(`http://localhost:3000/applicant?token=${token}&user=${encodeURIComponent(JSON.stringify(user))}`);
+// }
+// );
+
 router.get(
   "/google/callback",
   passport.authenticate("google", {
-    successRedirect: "http://localhost:3000/applicant",
     failureRedirect: "http://localhost:3000/login",
-  })
+  }),
+  (req, res) => {
+    // Create JWT token
+    const token = jwt.sign({ _id: req.user._id }, authKeys.jwtSecretKey, { expiresIn: "1h" });
+
+    res.cookie("token", token, { httpOnly: true });
+
+    // Redirect to frontend with token
+    res.redirect(`http://localhost:3000/applicant?token=${token}&type=${req.user.type}`);
+  }
 );
+
+
 const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
@@ -193,10 +222,10 @@ router.post("/reset-password", async (req, res) => {
   try {
     // console.log(user._id);
     const decoded = jwt.verify(token, authKeys.jwtSecretKey);
-    console.log("Decoded User ID:", decoded.id);
+    
 
     const user = await User.findOne({ _id: decoded.id, resetToken: token });
-    console.log(user);
+ 
 
     if (!user || user.resetTokenExpiry < Date.now()) {
       return res.status(400).json({ message: "Invalid or expired token" });

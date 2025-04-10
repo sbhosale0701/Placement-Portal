@@ -4,6 +4,10 @@ require("mongoose-type-email");
 
 let schema = new mongoose.Schema(
   {
+    name:{
+      type:String,
+      required:true,
+    },
     email: {
       type: mongoose.SchemaTypes.Email,
       unique: true,
@@ -35,6 +39,12 @@ let schema = new mongoose.Schema(
       enum: ["recruiter", "applicant"],
       required: true,
     },
+    domain: {
+      type:String,
+      required:true,
+      enum:["Web Development","Cyber Security","Data Science","AI & ML","Cloud Computing","DevOps"],
+     
+    },
    contactNumber : {
       type: String,
       validate: {
@@ -45,15 +55,26 @@ let schema = new mongoose.Schema(
       },
       // required:true,
     },
-    domain: {
-      type:String,
-      
-      enum:["Web Development","Cyber Security","Data Science","AI & ML","Cloud Computing","DevOps"],
-      // required: true,
-    },
+    
     year:{
       type:String,
-      enum:["FY-A","FY-B","SY-A","SY-B","TY-A","TY-B","BTech-A","BTech-B"]
+      enum:["FY-A","FY-B","SY-A","SY-B","TY-A","TY-B","BTech-A","BTech-B"],
+      required:true,
+    },
+    CGPA:{
+      type:Number,
+      required:true,
+    },
+    address:{
+    
+      type:String,
+      required:true,
+    },
+    resume: {
+      type: String,
+    },
+    profile: {
+      type: String,
     },
   },
   { collation: { locale: "en" } }
