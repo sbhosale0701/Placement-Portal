@@ -25,8 +25,7 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "build": "npm install --legacy-peer-deps && react-scripts build",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider && react-scripts build",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider && npm install --legacy-peer-deps && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
